@@ -22,6 +22,29 @@ def set_init_pair_ansi_index():
 		curses.init_pair(i, -1, ANSI_COLORS[i])
 
 
+# TODO handle x overflow
+def draw_board(rows, cols, width, height, win):
+    gapx = width // cols
+    gapy = height // rows + 1
+
+    # Horizontal lines
+    for i in range(0, rows + 1):
+        for j in range(0, width):
+            try:
+                win.addch(i * gapy, j, " ", curses.color_pair(4))
+            except:
+                break
+
+    # Vertical lines (height + pad so last row will have extra |)
+    for i in range(0, height + 3):
+        for j in range(0, cols + 1):
+            try:
+                win.addch(i, j * gapx, " ", curses.color_pair(4))
+            except:
+                break
+
+    return [gapx, gapy]
+
 
 def main(stdscr):
     curses.curs_set(0)
@@ -29,9 +52,9 @@ def main(stdscr):
 
     w = stdscr.getmaxyx()[1] - 20
     h = stdscr.getmaxyx()[0] - 20
-    win = curses.newwin(stdscr.getmaxyx()[0] - 10, stdscr.getmaxyx()[1] - 10, 5, 5)
-    win.addstr("HELLLLLOO", curses.color_pair(4))
-
+    pad = 10
+    win = curses.newwin(h + pad, w + pad, 5, 5)
+    gapx, gapy = draw_board(6, 7, w, h, win)
     win.refresh()
     win.getch()
 
