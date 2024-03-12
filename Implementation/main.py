@@ -45,6 +45,32 @@ def draw_board(rows, cols, width, height, win):
 
     return [gapx, gapy]
 
+def draw_rect_inside(row, col, w, h, win):
+    x = col + 1 if col == 0 else col * w + 1
+    y = row + 1 if row == 0 else row * h + 1
+
+    for i in range(y, y + h - 1):
+        for j in range(x, x + w - 1):
+            try:
+                win.addch(i, j, " ", curses.color_pair(3))
+            except:
+                break
+
+
+def draw_rect_around(col, w, h, win, color_pair_idx):
+    x = col * w
+    y = 0
+    # i -> rows, j -> cols
+    for i in range(y, y + h + 1):
+        for j in range(x, x + w + 1):
+            # Basically add full line for 1st and last row
+            # and for middle just add on 1st and last column
+            if i == y or i == y + h or j == x or j == x + w:
+                try:
+                    win.addch(i, j, " ", curses.color_pair(color_pair_idx))
+                except:
+                    break
+
 
 def main(stdscr):
     curses.curs_set(0)
@@ -55,6 +81,12 @@ def main(stdscr):
     pad = 10
     win = curses.newwin(h + pad, w + pad, 5, 5)
     gapx, gapy = draw_board(6, 7, w, h, win)
+
+    draw_rect_inside(0, 1, gapx, gapy, win)
+
+    draw_rect_around(4, gapx, gapy * 6, win, 2)
+    time.sleep(.5)
+    draw_rect_around(0, gapx, gapy * 4, win, 4)
     win.refresh()
     win.getch()
 
