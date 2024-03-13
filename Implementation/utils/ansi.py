@@ -19,6 +19,8 @@ def set_init_pair_ansi_index():
     # For 0, it's set to default background color of terminal and also curses doesn't allow setting it
     for i in range(1, 8):
         curses.init_pair(i, -1, ANSI_COLORS[i])
+    for i in range(10, 18):
+        curses.init_pair(i, ANSI_COLORS[i-10], -1)
 
 
 def add_img_with_ansi(path, cols, stdscr):
