@@ -10,6 +10,10 @@ def render_start_screen(win):
     win.nodelay(True)
     toggle = False
     height, width = win.getmaxyx()
+    if height < 25:
+        warnings.warn("Please zoom out your terminal. There's not enough space")
+        return
+
     pad = height // 12
     txt_height = 6
     gap = height // 3 - 3 * txt_height  # as we've 3 text to show
@@ -29,12 +33,8 @@ def render_start_screen(win):
         add_multi_line_str(win, menu_item["y"], menu_item["x"], ascii[menu_item["key"]])
         win.refresh()
 
-    try:
-        add_multi_line_str(win, menu[0]["y"], menu[0]["x"], ascii["PLAY"])
-        add_multi_line_str(win, menu[1]["y"], menu[0]["x"], ascii["HOW_TO_PLAY"])
-    except:
-        warnings.warn("PLEASE ZOOM OUT YOUR TERMINAL!")
-        return
+    add_multi_line_str(win, menu[0]["y"], menu[0]["x"], ascii["PLAY"])
+    add_multi_line_str(win, menu[1]["y"], menu[0]["x"], ascii["HOW_TO_PLAY"])
 
     while True:
         menu_item = menu[menu_focus]
