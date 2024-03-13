@@ -1,6 +1,8 @@
 # This File contains all the ui related functions that could be used not just in connect-four but also any grid/cell type game
+# TODO remove curses.color
 import curses
 import warnings
+
 
 # TODO handle x overflow
 def draw_board(rows, cols, width, height, win):
@@ -64,3 +66,11 @@ def draw_rect_around(col, w, h, win, color_pair_idx):
     if flag:
         warnings.warn("Attempted to draw_rect_around insufficient space")
 
+
+def add_multi_line_str(win, y, x, str, color=None):
+    lines = str.split("\n")
+    for i, line in enumerate(lines):
+        if color is not None:
+            win.addstr(y + i, x, line, color)
+        else:
+            win.addstr(y + i, x, line)
