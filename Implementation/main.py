@@ -9,6 +9,7 @@ from screens.tutorial_screen import render_tutorial_screen
 screen_map = {
     "START": render_start_screen,
     "PLAY": render_game_screen,
+    "PLAY_COMP": render_game_screen,
     "HOW_TO_PLAY": render_tutorial_screen,
 }
 
