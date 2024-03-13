@@ -16,13 +16,10 @@ def render_start_screen(win):
 
     pad = height // 12
     txt_height = 6
-    gap = height // 3 - 3 * txt_height  # as we've 3 text to show
 
     y = pad
     x = pad if pad + 105 < width else 0
 
-    win.addstr(str(len(ascii["CONNECT_FOUR_LOGO2"].split("\n"))))
-    win.addstr(f"\n{width}:{height}")
     menu = [
         {"key": "PLAY", "y": y + txt_height + pad, "x": x},
         {"key": "HOW_TO_PLAY", "y": y + 2*(txt_height + pad), "x": x},
@@ -34,7 +31,7 @@ def render_start_screen(win):
         win.refresh()
 
     add_multi_line_str(win, menu[0]["y"], menu[0]["x"], ascii["PLAY"])
-    add_multi_line_str(win, menu[1]["y"], menu[0]["x"], ascii["HOW_TO_PLAY"])
+    add_multi_line_str(win, menu[1]["y"], menu[1]["x"], ascii["HOW_TO_PLAY"])
 
     while True:
         menu_item = menu[menu_focus]
