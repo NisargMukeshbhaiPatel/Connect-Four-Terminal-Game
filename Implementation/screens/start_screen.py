@@ -6,7 +6,7 @@ from assets.ascii import ascii
 from utils.ui import add_multi_line_str
 
 
-def render_start_screen(win):
+def render_start_screen(win, state=None):
     win.nodelay(True)
     toggle = False
     height, width = win.getmaxyx()
@@ -87,7 +87,8 @@ def render_start_screen(win):
                 break
 
             elif key == curses.KEY_ENTER or key == 10 or key == 459:
-                return menu[menu_focus]["key"]
+                return menu[menu_focus]["key"], None
 
             elif key == ord("q") or key == ord("Q"):
                 return
+
