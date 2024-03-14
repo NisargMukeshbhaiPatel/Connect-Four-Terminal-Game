@@ -12,7 +12,7 @@ def render_game_screen(win, state=None):
     height = height - 2 * ypad
 
     board_win = curses.newwin(height, board_width, ypad, xpad)
-    gapx, gapy = draw_board(6, 7, board_width, height, board_win)
+    gapx, gapy = draw_board(6, 7, board_width - xpad, height, board_win)
 
     draw_rect_inside(0, 1, gapx, gapy, board_win)
     draw_rect_around(4, gapx, gapy * 6, board_win, 2)
