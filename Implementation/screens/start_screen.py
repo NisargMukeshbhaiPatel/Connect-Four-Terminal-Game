@@ -23,8 +23,8 @@ def render_start_screen(win, state=None):
     x = pad if pad + 105 < width else 0
 
     menu = [
-        {"key": "PLAY_COMP", "y": y + txt_height + pad, "x": x},
-        {"key": "PLAY", "y": y + 2*(txt_height + pad), "x": x},
+        {"key": "PLAY", "y": y + txt_height + pad, "x": x},
+        {"key": "PLAY_COMP", "y": y + 2*(txt_height + pad), "x": x},
         {"key": "HOW_TO_PLAY", "y": y + 3*(txt_height + pad), "x": x},
     ]
     menu_focus = 0
