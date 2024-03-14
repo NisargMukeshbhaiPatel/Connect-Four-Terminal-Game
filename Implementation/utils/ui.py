@@ -8,7 +8,7 @@ import warnings
 def draw_board(rows, cols, width, height, win):
     flag = False
     gapx = width // cols
-    gapy = height // rows + 1
+    gapy = height // rows
 
     # Horizontal lines
     for i in range(0, rows + 1):
