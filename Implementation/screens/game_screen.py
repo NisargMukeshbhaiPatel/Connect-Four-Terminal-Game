@@ -3,9 +3,10 @@ import time
 
 from utils.ui import draw_board, draw_rect_inside, draw_rect_around
 from game import game_logic as game
+from game.game_ai import get_computer_move_rand
 
 
-def render_game_screen(win, state=None):
+def render_game_screen(win, state=None, vs_comp=False):
     win.nodelay(True)
     # Calc dimensions
     height, width = win.getmaxyx()
@@ -24,16 +25,18 @@ def render_game_screen(win, state=None):
 
 
     # Initialize the Game
+    p1 = " Player" if vs_comp else "Player 1"
+    p2 = "Computer" if vs_comp else "Player 2"
     game_state = game.create_connect_four_game(
-        "Player 1", curses.color_pair(3), "Player 2", curses.color_pair(1), rows, cols
+        p1, curses.color_pair(3), p2, curses.color_pair(1), rows, cols
     )
 
     def render_player_turn(name, color):
-        win.addstr(3 * gapy - 1, 8 * gapx - 1, f"{name}'s Turn")
+        win.addstr(3 * gapy - 1, 8 * gapx - 1, f"{name}'s Turn ")
         draw_rect_inside(3, 8, gapx, gapy, color, win)
         win.refresh()
     # render 1st player turn
-    render_player_turn("Player 1", curses.color_pair(3))
+    render_player_turn(p1, curses.color_pair(3))
 
     # Set current column
     curr_column = 3
@@ -90,6 +93,7 @@ def render_game_screen(win, state=None):
             player_idx = game_state["turn"]
 
             if curr_row != -1:
+                # Draw the piece dropped
                 draw_rect_inside(curr_row, curr_column, gapx, gapy, player["color"], board_win)
                 board_win.refresh()
 
@@ -106,8 +110,16 @@ def render_game_screen(win, state=None):
 
                 else:
                     game.switch_turn(game_state)
-                    player = game.get_current_player(game_state) # player after switch_turn
+                    player = game.get_current_player(game_state) # get player after switch_turn
                     render_player_turn(player["name"], player["color"])
+                    if vs_comp and game_state["turn"] == 1:
+                        prev = curr_column
+                        curr_column = get_computer_move_rand(game_state["game_board"])
+                        time.sleep(.5)
+                        update_col(prev)
+                        time.sleep(.2)
+                        curses.ungetch(curses.KEY_ENTER)
+
 
         elif key == ord("q") or key == ord("Q"):
             return "START", None
