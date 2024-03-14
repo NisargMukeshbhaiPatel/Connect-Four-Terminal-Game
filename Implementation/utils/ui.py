@@ -4,17 +4,15 @@ import curses
 import warnings
 
 
-# TODO handle x overflow
-def draw_board(rows, cols, width, height, win):
-    flag = False
+def draw_board(rows, cols, width, height, win, delay=0, color=4):
     gapx = width // cols
-    gapy = height // rows + 1
+    gapy = height // rows
 
     # Horizontal lines
     for i in range(0, rows + 1):
         for j in range(0, width):
             try:
-                win.addch(i * gapy, j, " ", curses.color_pair(4))
+                win.addch(i * gapy, j, " ", curses.color_pair(color))
             except:
                 break
 
@@ -22,7 +20,7 @@ def draw_board(rows, cols, width, height, win):
     for i in range(0, height + 3):
         for j in range(0, cols + 1):
             try:
-                win.addch(i, j * gapx, " ", curses.color_pair(4))
+                win.addch(i, j * gapx, " ", curses.color_pair(color))
             except:
                 flag = True
                 break
