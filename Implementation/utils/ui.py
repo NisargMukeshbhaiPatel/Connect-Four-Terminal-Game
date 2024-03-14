@@ -7,6 +7,7 @@ import warnings
 def draw_board(rows, cols, width, height, win, delay=0, color=4):
     gapx = width // cols
     gapy = height // rows
+    width = gapx * cols
 
     # Horizontal lines
     for i in range(0, rows + 1):
