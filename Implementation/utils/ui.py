@@ -4,11 +4,11 @@ import curses
 import warnings
 
 
-# TODO handle x overflow
 def draw_board(rows, cols, width, height, win):
     flag = False
     gapx = width // cols
     gapy = height // rows
+    width = gapx * cols
 
     # Horizontal lines
     for i in range(0, rows + 1):
