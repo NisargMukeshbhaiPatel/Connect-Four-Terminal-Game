@@ -10,7 +10,7 @@ Connect Four is a classic two-player game in which the players take turns droppi
 
    ```bash
 	git clone https://github.com/NisargMukeshbhaiPatel/Connect-Four-Terminal-Game.git
-	cd Connect-Four-Terminal-Game
+	cd Connect-Four-Terminal-Game/Implementation
 	pip install -r requirements.txt
    ```
 
@@ -19,3 +19,31 @@ Connect Four is a classic two-player game in which the players take turns droppi
    ```bash
 	python main.py	
    ```
+
+## Building Executable
+An Example build for Windows x86_64 is already provided for reference
+
+Follow these steps to build a single executable file
+
+```bash
+pip install pyinstaller
+cd Implementation
+pyinstaller --onefile main.py
+```
+
+Copy the `assets/` folder to the `dist/` so executable can access assets
+
+Find your build file inside the `dist/` folder and run it
+
+## Troubleshooting
+
+If you encounter issues with pyinstaller or pip not being found, try the following:
+
+```bash
+python -m pip install pyinstaller
+python -m PyInstaller --onefile main.py 
+# OR
+py -m pip install pyinstaller
+py -m PyInstaller --onefile main.py 
+```
+
