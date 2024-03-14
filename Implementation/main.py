@@ -16,6 +16,7 @@ screen_map = {
 
 def main(stdscr):
     curses.curs_set(0)
+    stdscr.keypad(True)
     set_init_pair_ansi_index()
 
     # Handle Screen routing
@@ -23,6 +24,7 @@ def main(stdscr):
     state = None  # To pass state between screens
     while True:
         stdscr.clear()
+        stdscr.refresh()
         render_function = screen_map[current_screen]
         result = render_function(stdscr, state)
 
