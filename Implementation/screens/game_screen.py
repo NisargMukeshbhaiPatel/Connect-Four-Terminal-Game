@@ -105,8 +105,7 @@ def render_game_screen(win, state=None, vs_comp=False):
                     return "START", player
 
                 elif game.check_draw(game_state["game_board"]):
-                    print("DRAWW IS NOT HANDLED")
-                    # TODO handle if game is DRAW
+                    return "START", None
 
                 else:
                     game.switch_turn(game_state)
