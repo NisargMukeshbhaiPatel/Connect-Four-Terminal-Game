@@ -63,7 +63,7 @@ def get_current_player(game_state):
 def check_draw(game_board):
     for row in game_board:
         for cell in row:
-            if cell == 0:
+            if cell == -1:
                 return False
     return True
 
