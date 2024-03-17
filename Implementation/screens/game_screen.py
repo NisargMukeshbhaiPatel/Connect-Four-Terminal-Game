@@ -47,8 +47,8 @@ def render_game_screen(win, state=None, vs_comp=False):
         draw_rect_around(curr_column, gapx, gapy * 6, board_win, curses.color_pair(2))
         board_win.refresh()
 
-    def flash_winning_cols(cells, color, delay=.1):
-        for i in range(18):
+    def flash_cells(cells, color, count, delay=.1):
+        for i in range(count):
             for row, col in cells:
                 if i % 2 == 0:
                     draw_rect_inside(row, col, gapx, gapy, curses.color_pair(7), board_win)
@@ -101,10 +101,15 @@ def render_game_screen(win, state=None, vs_comp=False):
                     game_state["game_board"], curr_row, curr_column, player_idx
                 )
                 if len(winning_cells):
-                    flash_winning_cols(winning_cells, player["color"])
+                    flash_cells(winning_cells, player["color"], 18)
                     return "START", player
 
                 elif game.check_draw(game_state["game_board"]):
+                    cells = []
+                    for i, row in enumerate(game_state["game_board"]):
+                        for j, _ in enumerate(row):
+                            cells.append((i, j))
+                    flash_cells(cells, curses.color_pair(2), 5)
                     return "START", None
 
                 else:
