@@ -4,10 +4,10 @@ def create_player(player_name, player_color):
 
 def create_connect_four_game(p1_name, p1_color, p2_name, p2_color, rows=6, cols=7):
     game_board = [[-1 for _ in range(cols)] for _ in range(rows)]
-    players = [
+    players = (
         create_player(p1_name, p1_color),
         create_player(p2_name, p2_color),
-    ]
+    )
     return {"game_board": game_board, "players": players, "turn": 0}
 
 
@@ -24,7 +24,7 @@ def drop_piece(game_state, column):
 
 def check_win(game_board, row, col, player_idx):
     #             right  down diagonal-right diagonal-left
-    directions = [(0, 1), (1, 0), (1, 1), (1, -1)]
+    directions = ((0, 1), (1, 0), (1, 1), (1, -1))
 
     def check_direction(dx, dy):
         winning_cells = [(row, col)]
