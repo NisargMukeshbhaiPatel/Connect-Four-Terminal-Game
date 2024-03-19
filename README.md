@@ -2,6 +2,8 @@
 
 Connect Four is a classic two-player game in which the players take turns dropping colored discs into a grid. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.
 
+![cf](https://github.com/NisargMukeshbhaiPatel/Connect-Four-Terminal-Game/assets/101616954/3c26dd5d-08d1-4f1e-b7a1-b6446d94969b)
+
 ## Installation
 
 **NOTE**: Use a Python version **< 3.12** if you're on Windows, as there is an issue with the `windows-curses` module. See [windows-curses issue#48](https://github.com/zephyrproject-rtos/windows-curses/issues/48)
