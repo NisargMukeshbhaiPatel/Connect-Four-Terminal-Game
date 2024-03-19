@@ -2,6 +2,7 @@
 
 Connect Four is a classic two-player game in which the players take turns dropping colored discs into a grid. The objective of the game is to be the first to form a horizontal, vertical, or diagonal line of four of one's own discs.
 
+# Gameplay Clip
 ![cf](https://github.com/NisargMukeshbhaiPatel/Connect-Four-Terminal-Game/assets/101616954/3c26dd5d-08d1-4f1e-b7a1-b6446d94969b)
 
 ## Installation
